@@ -1,21 +1,21 @@
 import React from "react";
 import FiltersBar from "../filters/FiltersMenuBar";
 import Search from "../search/Search";
-import { Button } from "../ui/button";
-import { ClearFiltersIcon } from "../filters/ClearFilterIcon";
+import { Menubar } from "../ui/menubar";
+import { ClearFilterButton } from "../filters/ClearFilterIcon";
 
 function CatalogHeader() {
   return (
-    <header className="bg-stone-800 text-white font-mono font-bold  flex justify-between p-4 items-center">
-      <div className="flex gap-4 items-center">
+    <Menubar className="bg-stone-800 text-white p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 ">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-4  ">
         <FiltersBar />
-        <Button variant="secondary" size="icon" className="size-8">
-          <ClearFiltersIcon />
-        </Button>
+        <ClearFilterButton />
       </div>
 
-      <Search />
-    </header>
+      <div className="w-full sm:w-auto">
+        <Search />
+      </div>
+    </Menubar>
   );
 }
 
