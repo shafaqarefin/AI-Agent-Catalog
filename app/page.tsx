@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,12 +13,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function CardDemo() {
+export default function Login() {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Card className="w-full max-w-sm ">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>AI Catalog</CardTitle>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
