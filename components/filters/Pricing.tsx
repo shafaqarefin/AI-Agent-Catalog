@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+  Menubar,
   MenubarContent,
   MenubarMenu,
   MenubarRadioGroup,
@@ -26,19 +27,23 @@ function PricingFilter() {
   };
 
   return (
-    <MenubarMenu>
-      <MenubarTrigger>Pricing</MenubarTrigger>
-      <MenubarContent>
-        <MenubarRadioGroup
-          value={selectedPricing || ""}
-          onValueChange={handlePricingChange}
-        >
-          <MenubarRadioItem value="Subscription">Subscription</MenubarRadioItem>
-          <MenubarRadioItem value="Per-Use">Per-Use</MenubarRadioItem>
-          <MenubarRadioItem value="Free Tier">Free Tier</MenubarRadioItem>
-        </MenubarRadioGroup>
-      </MenubarContent>
-    </MenubarMenu>
+    <Menubar className="bg-black text-white border-0">
+      <MenubarMenu>
+        <MenubarTrigger>Pricing</MenubarTrigger>
+        <MenubarContent>
+          <MenubarRadioGroup
+            value={selectedPricing || ""}
+            onValueChange={handlePricingChange}
+          >
+            <MenubarRadioItem value="Subscription">
+              Subscription
+            </MenubarRadioItem>
+            <MenubarRadioItem value="Per-Use">Per-Use</MenubarRadioItem>
+            <MenubarRadioItem value="Free Tier">Free Tier</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
   );
 }
 
