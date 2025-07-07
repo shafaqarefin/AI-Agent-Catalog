@@ -1,40 +1,68 @@
+// CategoryFilter.tsx
 "use client";
 
-import React, { useState } from "react";
 import {
-  MenubarContent,
-  MenubarMenu,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
+  setSelectedCategories,
+  applyFilters,
+} from "@/store/features/agent/agentSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
-function CategoryFilter() {
-  const [selected, setSelected] = useState("");
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const allCategories = [
+  "Customer Service",
+  "Operations",
+  "Data Analysis",
+  "Development",
+  "Human Resources",
+  "Marketing",
+  "Finance",
+  "Legal",
+];
+
+export default function CategoryFilter() {
+  const dispatch = useAppDispatch();
+  const selectedCategories = useAppSelector(
+    (state) => state.agent.selectedCategories
+  );
+
+  const toggleCategory = (category: string) => {
+    const updated = selectedCategories.includes(category)
+      ? selectedCategories.filter((c) => c !== category)
+      : [...selectedCategories, category];
+
+    dispatch(setSelectedCategories(updated));
+    dispatch(applyFilters());
+  };
 
   return (
-    <MenubarMenu>
-      <MenubarTrigger>Categories</MenubarTrigger>
-      <MenubarContent>
-        <MenubarRadioGroup value={selected} onValueChange={setSelected}>
-          <MenubarRadioItem value="Customer Service">
-            Customer Service
-          </MenubarRadioItem>
-          <MenubarRadioItem value="Operations">Operations</MenubarRadioItem>
-          <MenubarRadioItem value="Data Analysis">
-            Data Analysis
-          </MenubarRadioItem>
-          <MenubarRadioItem value="Development">Development</MenubarRadioItem>
-          <MenubarRadioItem value="Human Resources">
-            Human Resources
-          </MenubarRadioItem>
-          <MenubarRadioItem value="Marketing">Marketing</MenubarRadioItem>
-          <MenubarRadioItem value="Finance">Finance</MenubarRadioItem>
-          <MenubarRadioItem value="Legal">Legal</MenubarRadioItem>
-        </MenubarRadioGroup>
-      </MenubarContent>
-    </MenubarMenu>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild className="bg-accent-foreground border-0">
+          <Button variant="outline">Categories</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Select Categories</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {allCategories.map((category) => (
+            <DropdownMenuCheckboxItem
+              key={category}
+              checked={selectedCategories.includes(category)}
+              onCheckedChange={() => toggleCategory(category)}
+            >
+              {category}
+            </DropdownMenuCheckboxItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 }
-
-export default CategoryFilter;

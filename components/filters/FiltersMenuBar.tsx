@@ -1,15 +1,17 @@
+"use client";
+
 import React from "react";
-import { Menubar } from "@/components/ui/menubar";
-import PricingFilter from "./Pricing";
-import StatusFilter from "./Status";
 import CategoryFilter from "./Category";
+import StatusFilter from "./Status";
+import PricingFilter from "./Pricing";
+
 function FiltersBar() {
   return (
-    <Menubar className="bg-stone-800 text-white font-mono font-bold	w-fit	">
-      <PricingFilter />
-      <StatusFilter />
+    <div className="flex gap-4">
       <CategoryFilter />
-    </Menubar>
+      <StatusFilter />
+      <PricingFilter />
+    </div>
   );
 }
 
