@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,8 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoading(true);
+    signIn("google", { callbackUrl: "/dashboard" });
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Card className="w-full max-w-sm ">
@@ -21,11 +30,13 @@ export default function Login() {
 
         <CardFooter className="flex-col gap-2">
           <Button
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={handleLogin}
             variant="outline"
-            className="w-full"
+            className="w-full flex items-center justify-center gap-2"
+            disabled={isLoading}
           >
-            Login with Google
+            {isLoading && <Loader2 className="animate-spin h-4 w-4" />}
+            {isLoading ? "Logging in..." : "Login with Google"}
           </Button>
         </CardFooter>
       </Card>
