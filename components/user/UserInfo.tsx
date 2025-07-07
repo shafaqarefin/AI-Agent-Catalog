@@ -8,7 +8,7 @@ export default function UserInfo() {
   if (!session) return <p>Not signed in</p>;
 
   return (
-    <>
+    <div className="flex justify-between w-fit space-x-2">
       <div className="flex items-center gap-4">
         <Image
           src={session.user?.image ?? "/default-avatar.jpg"}
@@ -20,6 +20,6 @@ export default function UserInfo() {
         <span> Welcome {session.user?.name}</span>
       </div>
       <SignOutButton />
-    </>
+    </div>
   );
 }
