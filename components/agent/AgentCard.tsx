@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -7,6 +9,7 @@ import {
   CardAction,
 } from "@/components/ui/card";
 import { User, MessageCircle, Cpu, Briefcase, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 
 type Agent = {
   id: string;
@@ -43,26 +46,34 @@ export default function AgentCard({ agent }: { agent: Agent }) {
   const IconComponent = getIconByCategory(agent.category);
 
   return (
-    <Card className="bg-white border shadow-md p-4 text-stone-800">
-      <CardAction>
-        <IconComponent className="w-6 h-6 text-gray-500" />
-      </CardAction>
+    <motion.div
+      key={agent.id}
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
+      <Card className="bg-white border shadow-md p-4 text-stone-800">
+        <CardAction>
+          <IconComponent className="w-6 h-6 text-gray-500" />
+        </CardAction>
 
-      <CardHeader>
-        <CardTitle className="text-xl font-bold">{agent.name}</CardTitle>
-        <CardDescription>{agent.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2 mt-2 text-sm">
-        <div>
-          <span className="font-semibold">Status:</span> {agent.status}
-        </div>
-        <div>
-          <span className="font-semibold">Category:</span> {agent.category}
-        </div>
-        <div>
-          <span className="font-semibold">Pricing:</span> {agent.pricingModel}
-        </div>
-      </CardContent>
-    </Card>
+        <CardHeader>
+          <CardTitle className="text-xl font-bold">{agent.name}</CardTitle>
+          <CardDescription>{agent.description}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2 mt-2 text-sm">
+          <div>
+            <span className="font-semibold">Status:</span> {agent.status}
+          </div>
+          <div>
+            <span className="font-semibold">Category:</span> {agent.category}
+          </div>
+          <div>
+            <span className="font-semibold">Pricing:</span> {agent.pricingModel}
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
