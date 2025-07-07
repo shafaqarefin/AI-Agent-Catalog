@@ -1,9 +1,18 @@
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { Loader2 } from "lucide-react";
 import SignOutButton from "./Signout";
 
 export default function UserInfo() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center">
+        <Loader2 className="h-5 w-5 animate-spin text-black" />
+      </div>
+    );
+  }
 
   if (!session) return <p>Not signed in</p>;
 
@@ -17,7 +26,7 @@ export default function UserInfo() {
           height={28}
           className="rounded-full"
         />
-        <span> Welcome {session.user?.name}</span>
+        <span>Welcome {session.user?.name}</span>
       </div>
       <SignOutButton />
     </div>
