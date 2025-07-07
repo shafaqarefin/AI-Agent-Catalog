@@ -11,7 +11,7 @@ export const metadata = {
   openGraph: {
     title: "AI Agent Dashboard",
     description: "Explore AI agents with advanced filters and search.",
-    url: `https://${process.env.NEXT_PUBLIC_BASE_URL}.com/dashboard`,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard`,
     siteName: "AI Agent Catalog",
     type: "website",
   },
