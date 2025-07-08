@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,7 +26,7 @@ export default function Login() {
       <Card className="w-full max-w-sm ">
         <CardHeader>
           <CardTitle>AI Catalog</CardTitle>
-          <CardDescription>Log in using your google account.</CardDescription>
+          <CardDescription>Log in using your Google account.</CardDescription>
         </CardHeader>
 
         <CardFooter className="flex-col gap-2">
@@ -35,6 +36,14 @@ export default function Login() {
             className="w-full flex items-center justify-center gap-2"
             disabled={isLoading}
           >
+            <Image
+              src="https://img.icons8.com/color/48/google-logo.png"
+              alt="Google Logo"
+              width={20}
+              height={20}
+              style={{ objectFit: "contain" }}
+              priority
+            />
             {isLoading && <Loader2 className="animate-spin h-4 w-4" />}
             {isLoading ? "Logging in..." : "Login with Google"}
           </Button>
