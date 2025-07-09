@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="w-full border-b px-4 py-3 flex justify-between items-center">
       <h1 className="hidden sm:block text-xl font-semibold">
-        ArkLab AI Agent Catalog
+        AI Agent Catalog
       </h1>
 
       <div className="text-xs sm:text-sm">
